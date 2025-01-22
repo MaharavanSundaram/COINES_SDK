@@ -15,8 +15,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          brew update
-          sudo apt install libusb-1.0-0-dev gcc make
+          brew upgrade
+          brew install libusb gcc make
   
       - name: Create Installer - MacOS
         run: |
