@@ -31,4 +31,4 @@ jobs:
       run: |
         cd _installer_/Installer_Scripts/Windows
         # Run ISCC to compile the installer
-        "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" "COINES_SDK_PRM.iss"
+        & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" "COINES_SDK_PRM.iss"
