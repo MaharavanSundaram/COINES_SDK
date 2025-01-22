@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=COINES Code Editor
+Comment=Editor for compiling and running COINES Examples
+Exec=/opt/COINES-CodeEditor/coinesGUI
+Path=/opt/COINES-CodeEditor/
+Icon=/opt/COINES-CodeEditor/coines.png
+Terminal=false
+Type=Application
+Categories=Utility;Development;
