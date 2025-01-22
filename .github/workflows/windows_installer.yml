@@ -1,0 +1,28 @@
+name: COINES Installer-Windows
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Download and install Inno Setup
+      run: |
+        # Download Inno Setup installer
+        Invoke-WebRequest -Uri https://jrsoftware.org/isdl.php -OutFile InnoSetup.exe
+        # Install Inno Setup silently
+        Start-Process -FilePath .\InnoSetup.exe -ArgumentList "/VERYSILENT" -NoNewWindow -Wait
+        # Cleanup
+        Remove-Item .\InnoSetup.exe -Force
+
+    - name: COINES Installer - Windows
+      run: |
+        cd _installer_/Installer_Scripts/Windows
+        "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" "COINES_SDK_PRM.iss"

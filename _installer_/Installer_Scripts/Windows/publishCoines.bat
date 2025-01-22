@@ -221,7 +221,7 @@ copy %PROJ_DIR%\README.md %COINES_DIR%\README.md
 
 
 ::Create Installer
-%INNO_TOOL_DIR%\ISCC.exe COINES_SDK_PRM.iss
+ISCC.exe COINES_SDK_PRM.iss
 
 :: Get Git Tag Description
 for /F "tokens=* USEBACKQ" %%F in (`git describe  --tags`) do (
