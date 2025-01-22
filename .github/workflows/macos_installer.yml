@@ -7,7 +7,7 @@ on:
 
 jobs:
   MacOS-installer:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     
     steps:
       - name: Checkout repository
@@ -30,8 +30,8 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: coines_MacOS_installer
-          path: ./_installer_/Installer_Scripts/MacOS/_installer_linux.tar.gz 
+          name: coines_macos_installer
+          path: ./_installer_/Installer_Scripts/MacOS/_installer_macos.tar.gz
 
 
         
