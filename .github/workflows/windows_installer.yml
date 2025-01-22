@@ -30,6 +30,7 @@ jobs:
         # Check file size (it should be approximately 2 MB)
         $expectedSize = 2130000  # Size in bytes (approximate size of InnoSetup.exe)
         $fileSize = (Get-Item .\InnoSetup.exe).length
+        echo $fileSize
         if ($fileSize -lt $expectedSize) {
           Write-Error "Inno Setup installer is too small, download might be corrupted."
           exit 1
