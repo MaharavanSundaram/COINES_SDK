@@ -22,7 +22,6 @@ jobs:
 
       - name: List the files
         run: |
-          cd __temp
-          ls -LR 
+          find . -type f -name "*.tar.gz"
         
     
