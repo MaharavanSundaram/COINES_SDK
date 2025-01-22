@@ -44,5 +44,11 @@ jobs:
     - name: Run COINES Installer
       run: |
         cd _installer_/Installer_Scripts/Windows
-        # Run the batch script to set up the COINES installer
         cmd /c "publishCoines.bat"
+    
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: coines_windows_installer
+        path: _installer_/Installer_Scripts/Windows/_installer_windows.zip
+
