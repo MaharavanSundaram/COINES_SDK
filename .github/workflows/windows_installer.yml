@@ -17,8 +17,7 @@ jobs:
       run: |
         # Install LaTeX using Chocolatey
         choco install miktex -y
-        cd "C:\Program Files\MiKTeX 2.9\miktex\bin\x64"
-        dir
+        where miktex
     
     - name: Install GCC Arm Embedded Tools
       run: |
