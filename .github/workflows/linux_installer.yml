@@ -1,4 +1,4 @@
-name: COINESPY deploy on PYPI
+name: COINES Installer - MACOS
 
 on:
   push:

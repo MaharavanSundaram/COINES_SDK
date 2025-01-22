@@ -1,0 +1,31 @@
+name: COINES Installer - MACOS
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  coinespy-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install libusb-1.0-0-dev gcc make
+
+      - name: Create Installer - Mac OS
+          cd _installer_/Installer_Scripts/MacOS
+          sh ./gen_install_script.sh
+
+      - name: List the files
+        run: |
+          find . -type f -name "*.tar.gz"
+
+
+        
+    
