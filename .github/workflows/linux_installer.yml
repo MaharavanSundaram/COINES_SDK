@@ -1,4 +1,4 @@
-name: COINES Installer - MACOS
+name: COINES Installer - Linux
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - '*'
 
 jobs:
-  coinespy-deploy:
+  linux-installer:
     runs-on: ubuntu-latest
     
     steps:
@@ -15,9 +15,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd _installer_/Installer_Scripts/Linux_generic
           sudo apt update
           sudo apt install libusb-1.0-0-dev gcc make
+  
+      - name: Create Installer - Linux
+        run: |
+          cd _installer_/Installer_Scripts/Linux_generic
           sh ./gen_install_script.sh
 
       - name: List the files

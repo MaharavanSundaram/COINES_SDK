@@ -1,4 +1,4 @@
-name: COINES Installer - MACOS
+name: COINES Installer - MacOS
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - '*'
 
 jobs:
-  coinespy-deploy:
+  MacOS-installer:
     runs-on: ubuntu-latest
     
     steps:
@@ -17,14 +17,21 @@ jobs:
         run: |
           sudo apt update
           sudo apt install libusb-1.0-0-dev gcc make
-
-      - name: Create Installer - Mac OS
+  
+      - name: Create Installer - MacOS
+        run: |
           cd _installer_/Installer_Scripts/MacOS
           sh ./gen_install_script.sh
 
       - name: List the files
         run: |
           find . -type f -name "*.tar.gz"
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: coines_MacOS_installer
+          path: ./_installer_/Installer_Scripts/MacOS/_installer_linux.tar.gz 
 
 
         
