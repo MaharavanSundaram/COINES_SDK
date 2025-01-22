@@ -19,9 +19,10 @@ jobs:
           sudo apt update
           sudo apt install libusb-1.0-0-dev gcc make
           sh ./gen_install_script.sh
+          
       - name: List the files
         run : |
-        cd 
+        cd __temp
         ls -LR 
         
     
