@@ -24,6 +24,8 @@ jobs:
       run: |
         # Install LaTeX using Chocolatey
         choco install miktex -y
+        # Add MiKTeX to PATH
+        $env:PATH += ";C:\Program Files\MiKTeX 2.9\miktex\bin\x64"
         # Verify LaTeX installation
         pdflatex --version
 
