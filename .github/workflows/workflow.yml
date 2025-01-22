@@ -13,11 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-
       - name: Install dependencies
         run: |
           cd _installer_/Installer_Scripts/Linux_generic
-          sh sudo apt install libusbx-dev gcc make
+          sudo apt install libusbx-dev gcc make
           sh ./gen_install_script.sh
         
     
