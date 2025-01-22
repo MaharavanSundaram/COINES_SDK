@@ -27,7 +27,8 @@ jobs:
         # Add MiKTeX to PATH
         $env:PATH += ";C:\Program Files\MiKTeX 2.9\miktex\bin\x64"
         # Verify LaTeX installation
-        pdflatex --version
+        cmd /c "pdflatex --version"
+
 
     - name: Download Inno Setup Installer
       run: |
