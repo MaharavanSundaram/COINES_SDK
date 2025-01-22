@@ -15,38 +15,22 @@ jobs:
     
     - name: Download Inno Setup Installer
       run: |
-        # Retry download if the file is not downloaded correctly
-        $url = "https://jrsoftware.org/isdl.php?file=innosetup-6.2.0.exe"
+        # Download the Inno Setup installer directly from a known URL
+        $url = "https://files.jrsoftware.org/is/innosetup-6.2.0.exe"
         $output = "InnoSetup.exe"
-        $maxRetries = 3
-        $retryCount = 0
-        $success = $false
-        while ($retryCount -lt $maxRetries -and !$success) {
-          try {
-            Invoke-WebRequest -Uri $url -OutFile $output
-            $success = $true
-          }
-          catch {
-            $retryCount++
-            Write-Host "Attempt $retryCount to download failed, retrying..."
-            Start-Sleep -Seconds 5
-          }
-        }
-        if (-not $success) {
-          Write-Error "Failed to download the Inno Setup installer after $maxRetries attempts."
-          exit 1
-        }
+        Invoke-WebRequest -Uri $url -OutFile $output
 
     - name: Verify Installer Download
       run: |
-        # Verify the file is not corrupted
+        # Verify the file is not corrupted and check the size
         if (!(Test-Path .\InnoSetup.exe)) {
           Write-Error "Inno Setup installer is not found or corrupted."
           exit 1
         }
-        # Optionally check the file size (for validation)
+        # Check file size (it should be approximately 2 MB)
+        $expectedSize = 2130000  # Size in bytes (approximate size of InnoSetup.exe)
         $fileSize = (Get-Item .\InnoSetup.exe).length
-        if ($fileSize -lt 1000000) {
+        if ($fileSize -lt $expectedSize) {
           Write-Error "Inno Setup installer is too small, download might be corrupted."
           exit 1
         }
