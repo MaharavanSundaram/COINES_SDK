@@ -16,7 +16,8 @@ jobs:
       - name: Install dependencies
         run: |
           cd _installer_/Installer_Scripts/Linux_generic
-          sudo apt install libusbx-dev gcc make
+          sudo apt update
+          sudo apt install libusb-1.0-0-dev gcc make
           sh ./gen_install_script.sh
         
     
