@@ -23,5 +23,13 @@ jobs:
       - name: List the files
         run: |
           find . -type f -name "*.tar.gz"
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifacts@v3
+        with:
+          name: coines_linux_installer
+          path: ./_installer_/Installer_Scripts/Linux_generic/_installer_linux.tar.gz 
+
+
         
     
