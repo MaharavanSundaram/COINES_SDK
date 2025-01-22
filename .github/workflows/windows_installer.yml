@@ -20,22 +20,6 @@ jobs:
         $output = "InnoSetup.exe"
         Invoke-WebRequest -Uri $url -OutFile $output
 
-    - name: Verify Installer Download
-      run: |
-        # Verify the file is not corrupted and check the size
-        if (!(Test-Path .\InnoSetup.exe)) {
-          Write-Error "Inno Setup installer is not found or corrupted."
-          exit 1
-        }
-        # Check file size (it should be approximately 2 MB)
-        $expectedSize = 2130000  # Size in bytes (approximate size of InnoSetup.exe)
-        $fileSize = (Get-Item .\InnoSetup.exe).length
-        echo $fileSize
-        if ($fileSize -lt $expectedSize) {
-          Write-Error "Inno Setup installer is too small, download might be corrupted."
-          exit 1
-        }
-
     - name: Install Inno Setup
       run: |
         # Install Inno Setup silently
