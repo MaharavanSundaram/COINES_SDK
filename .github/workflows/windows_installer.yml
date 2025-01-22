@@ -16,7 +16,7 @@ jobs:
     - name: Download Inno Setup Installer
       run: |
         # Download the Inno Setup installer directly from a known URL
-        $url = "https://files.jrsoftware.org/is/innosetup-6.2.0.exe"
+        $url = "https://files.jrsoftware.org/is/5/innosetup-5.6.0.exe"
         $output = "InnoSetup.exe"
         Invoke-WebRequest -Uri $url -OutFile $output
 
