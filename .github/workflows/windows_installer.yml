@@ -17,13 +17,8 @@ jobs:
       run: |
         # Install LaTeX using Chocolatey
         choco install miktex -y
-        # Add MiKTeX to PATH permanently for the session
-        setx PATH "$env:PATH;C:\Program Files\MiKTeX 2.9\miktex\bin\x64"
-        # Reload the environment variable to make pdflatex available
-        $env:PATH = [System.Environment]::GetEnvironmentVariable('PATH', [System.EnvironmentVariableTarget]::User)
-        # Verify LaTeX installation
-        pdflatex --version
-
+        cd C:\\Program Files\\MiKTeX 2.9\\miktex\\bin\\x64
+        dir
     
     - name: Install GCC Arm Embedded Tools
       run: |
