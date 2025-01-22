@@ -13,18 +13,36 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     
+    - name: Install GCC Arm Embedded Tools
+      run: |
+        # Install GCC Arm Embedded tools using Chocolatey
+        choco install gcc-arm-embedded -y
+        # Verify installation
+        arm-none-eabi-gcc --version
+
+    - name: Install LaTeX (PDFLatex)
+      run: |
+        # Install LaTeX using Chocolatey
+        choco install miktex -y
+        # Verify LaTeX installation
+        pdflatex --version
+
     - name: Download Inno Setup Installer
       run: |
+        # Download Inno Setup executable from official source
         $url = "https://files.jrsoftware.org/is/5/innosetup-5.6.0.exe"
         $output = "InnoSetup.exe"
         Invoke-WebRequest -Uri $url -OutFile $output
 
     - name: Install Inno Setup
       run: |
+        # Install Inno Setup silently
         Start-Process -FilePath .\InnoSetup.exe -ArgumentList "/VERYSILENT" -NoNewWindow -Wait
+        # Cleanup the installer file
         Remove-Item .\InnoSetup.exe -Force
 
     - name: Run COINES Installer
       run: |
         cd _installer_/Installer_Scripts/Windows
+        # Run the batch script to set up the COINES installer
         cmd /c "publishCoines.bat"
