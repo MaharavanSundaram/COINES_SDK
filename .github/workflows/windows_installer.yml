@@ -12,13 +12,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    
-    - name: Install GCC Arm Embedded Tools
-      run: |
-        # Install GCC Arm Embedded tools using Chocolatey
-        choco install gcc-arm-embedded -y
-        # Verify installation
-        arm-none-eabi-gcc --version
 
     - name: Install LaTeX (PDFLatex)
       run: |
@@ -27,8 +20,14 @@ jobs:
         # Add MiKTeX to PATH
         $env:PATH += ";C:\Program Files\MiKTeX 2.9\miktex\bin\x64"
         # Verify LaTeX installation
-        cmd /c "C:\Program Files\MiKTeX 2.9\miktex\bin\x64\pdflatex.exe --version"
-
+        cmd /c "'C:\Program Files\MiKTeX 2.9\miktex\bin\x64\pdflatex.exe' --version"
+    
+    - name: Install GCC Arm Embedded Tools
+      run: |
+        # Install GCC Arm Embedded tools using Chocolatey
+        choco install gcc-arm-embedded -y
+        # Verify installation
+        arm-none-eabi-gcc --version
 
     - name: Download Inno Setup Installer
       run: |
