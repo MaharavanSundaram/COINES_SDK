@@ -12,15 +12,18 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
-    - name: Install LaTeX (PDFLatex)
+    
+        - name: Install LaTeX (PDFLatex)
       run: |
         # Install LaTeX using Chocolatey
         choco install miktex -y
-        # Add MiKTeX to PATH
-        $env:PATH += ";C:\Program Files\MiKTeX 2.9\miktex\bin\x64"
+        # Add MiKTeX to PATH permanently for the session
+        setx PATH "$env:PATH;C:\Program Files\MiKTeX 2.9\miktex\bin\x64"
+        # Reload the environment variable to make pdflatex available
+        $env:PATH = [System.Environment]::GetEnvironmentVariable('PATH', [System.EnvironmentVariableTarget]::User)
         # Verify LaTeX installation
-        cmd /c "'C:\Program Files\MiKTeX 2.9\miktex\bin\x64\pdflatex.exe' --version"
+        pdflatex --version
+
     
     - name: Install GCC Arm Embedded Tools
       run: |
@@ -28,6 +31,7 @@ jobs:
         choco install gcc-arm-embedded -y
         # Verify installation
         arm-none-eabi-gcc --version
+
 
     - name: Download Inno Setup Installer
       run: |
