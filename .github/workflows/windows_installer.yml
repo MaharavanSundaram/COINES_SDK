@@ -13,7 +13,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     
-        - name: Install LaTeX (PDFLatex)
+    - name: Install LaTeX (PDFLatex)
       run: |
         # Install LaTeX using Chocolatey
         choco install miktex -y
